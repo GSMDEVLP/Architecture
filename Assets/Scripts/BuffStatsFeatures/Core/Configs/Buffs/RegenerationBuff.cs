@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RegenerationBuff", menuName = "Configs/Buffs/RegenerationBuff")]
 public class RegenerationBuff : BuffConfig
 {
-    [SerializeField] private float _healingPerSecond;
-    [SerializeField] private float _duration;
+    [SerializeField] private int _instantHeal;
+    [SerializeField] private int _duration;
 
     public override IBuff CreateBuff()
     {
-        return new RegenerationBuffImplementation(_healingPerSecond, _duration);
+        return new RegenerationBuffImplementation(_instantHeal, _duration);
     }
 }

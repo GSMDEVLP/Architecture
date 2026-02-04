@@ -20,10 +20,10 @@ public class InstallerSystem : MonoBehaviour
 
         installers.Sort((a,b) => a.Order.CompareTo(b.Order));
 
-        foreach (var installerMB in _installersMonoBehaviours)
-            if (installerMB is IInstaller installer)
-                installer.InstallBindings(_gameServices);
-            else
-                Debug.LogWarning($"MonoBehaviour {installerMB.GetType().Name} does not implement IInstaller.");
+        foreach (var installer in installers)
+        {
+            installer.InstallBindings(gameServices);
+            Debug.LogWarning($"MonoBehaviour {installer.GetType().Name} does not implement IInstaller.");
+        }
     }
 }

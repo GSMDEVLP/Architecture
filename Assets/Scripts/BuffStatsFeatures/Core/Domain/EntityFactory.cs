@@ -1,19 +1,12 @@
 
 public class EntityFactory : IEntityFactory
 {
-    private Resources resources;
-    private Stats stats;
-    public EntityFactory(EntityParametersDefenition entityParametersDefenition)
-    {
-        resources = entityParametersDefenition.Resources;
-        stats = entityParametersDefenition.Stats;
-    }
-    public IResourcesOwner CreateResourcesOwner()
+    public IResourcesOwner CreateResourcesOwner(Resources resources)
     {
         return new ResourcesOwner(resources);
     }
 
-    public IStatsOwner CreateStatsOwner()
+    public IStatsOwner CreateStatsOwner(Stats stats)
     {
         return new StatsOwner(stats);
     }

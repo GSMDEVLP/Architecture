@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BuffInstaller : MonoBehaviour, IInstaller
 {
-    [SerializeField] private int _order = 0; 
+    [SerializeField] private int _order; 
     [SerializeField] private BuffSystem _buffSystem;
-[SerializeField] private List<BuffConfig> _buffConfigs = new();
+    [SerializeField] private List<BuffConfig> _buffConfigs = new();
 
-    private Dictionary<string, IBuff> _buffs;
+    private Dictionary<BuffsEnum, IBuff> _buffs = new();
 
     public int Order => _order;
 
@@ -17,9 +17,14 @@ public class BuffInstaller : MonoBehaviour, IInstaller
         foreach (var buffConfig in _buffConfigs)
         {
             var buff = buffConfig.CreateBuff();
-            _buffs.Add(buffConfig.BuffName.ToString(), buff);
+            if (_buffs.TryAdd(buffConfig.BuffName, buff))
+                Debug.Log($"[BuffInstaller] Registered buff: {buffConfig.BuffName}");
+            else
+                Debug.LogWarning($"[BuffInstaller] Duplicate buff key: {buffConfig.BuffName}");
         }
         var entity = gameServices.Entity;
-        _buffSystem.Init(entity, _buffs);
+        var buffService = new BuffService(entity, _buffs);
+        _buffSystem.Init(buffService);
+        Debug.Log($"[BuffInstaller] BuffSystem initialized. Buff count: {_buffs.Count}");
     }
 }

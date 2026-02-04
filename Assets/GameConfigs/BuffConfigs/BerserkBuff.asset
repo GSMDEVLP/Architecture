@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121011e3c59299c42829196dcf6a6c48, type: 3}
   m_Name: BerserkBuff
   m_EditorClassIdentifier: 
-  _damageMultiplier: 3
+  _buffName: 0
+  _damageMultiplier: 5
   _armorReduction: 20
   _duration: 5

@@ -6,8 +6,7 @@ using UnityEngine;
 public class AdrenalineBuff : BuffConfig
 {
     [SerializeField] private int _speedIncrease;
-    [SerializeField] private float _duration;
-
+    [SerializeField] private int _duration;
 
     public override IBuff CreateBuff()
     {

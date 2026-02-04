@@ -1,4 +1,4 @@
 public interface IEntityFactory {
-    IStatsOwner CreateStatsOwner();
-    IResourcesOwner CreateResourcesOwner();
+    IStatsOwner CreateStatsOwner(Stats stats);
+    IResourcesOwner CreateResourcesOwner(Resources resources);
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParameterInstaller : MonoBehaviour, IInstaller
 {
-    [SerializeField] private int _order = 0; 
+    [SerializeField] private int _order; 
     [SerializeField] private ParameterSystem _parameterSystem;
 
     [SerializeField] private EntityParameters _entityParameters;
@@ -21,11 +21,12 @@ public class ParameterInstaller : MonoBehaviour, IInstaller
     {
         _entityConfigAdapter = new EntityConfigAdapter();
         var entityParametersDefenition = _entityConfigAdapter.ToDefenition(_entityParameters);
-        _entityFactory = new EntityFactory(entityParametersDefenition);
-        _resourcesOwner = _entityFactory.CreateResourcesOwner();
-        _statsOwner = _entityFactory.CreateStatsOwner(); 
+        _entityFactory = new EntityFactory();
+        _resourcesOwner = _entityFactory.CreateResourcesOwner(entityParametersDefenition.Resources);
+        _statsOwner = _entityFactory.CreateStatsOwner(entityParametersDefenition.Stats); 
         _entity = new Entity(_statsOwner, _resourcesOwner);
 
+        gameServices.Entity = _entity;
         _parameterSystem.Init(_entity);
     }
 }

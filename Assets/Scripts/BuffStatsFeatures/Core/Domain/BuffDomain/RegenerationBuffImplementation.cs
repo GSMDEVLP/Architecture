@@ -1,22 +1,25 @@
 
 public class RegenerationBuffImplementation : IBuff
 {
-    private readonly float _healingPerSecond;
-    private readonly float _duration;
 
-    public RegenerationBuffImplementation(float healingPerSecond, float duration)
+    private readonly int _instantHeal;
+    private readonly int _duration;
+    
+    public int Duration => _duration;
+
+    public RegenerationBuffImplementation(int instantHeal, int duration)
     {
-        _healingPerSecond = healingPerSecond;
+        _instantHeal = instantHeal;
         _duration = duration;
     }
 
+
     public void Apply(IEntity target)
     {
-        throw new System.NotImplementedException();
+        target.ApplyResourcesModifier(new Resources(_instantHeal, 0, 0, 0));
     }
 
     public void Remove(IEntity target)
     {
-        throw new System.NotImplementedException();
     }
 }

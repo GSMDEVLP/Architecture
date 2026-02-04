@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c39408b83ab52448aeae84bd81d5375, type: 3}
   m_Name: RegenerationBuff
   m_EditorClassIdentifier: 
-  _buffName: 1
-  _healingPerSecond: 5
+  _buffName: 2
+  _instantHeal: 5
   _duration: 5

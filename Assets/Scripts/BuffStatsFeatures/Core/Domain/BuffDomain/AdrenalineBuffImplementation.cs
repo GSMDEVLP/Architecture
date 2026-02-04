@@ -3,15 +3,16 @@ using System;
 public class AdrenalineBuffImplementation : IBuff
 {
     private readonly int _agilityBonus;
-    private readonly float _duration;
-    private Stats _stats;
-    private Resources _resources;
 
-    public AdrenalineBuffImplementation(int agilityBonus, float duration)
+    private readonly int _duration;
+    public int Duration => _duration;
+
+    public AdrenalineBuffImplementation(int agilityBonus, int duration)
     {
         _agilityBonus = agilityBonus;
         _duration = duration;
     }
+
 
     public void Apply(IEntity target)
             => target.ApplyStatsModifier(new Stats(0, _agilityBonus, 0));

@@ -4,25 +4,38 @@ using UnityEngine;
 
 public class BuffSystem : MonoBehaviour
 {
-    private IEntity _entity;
+    private BuffService _buffService;
 
-    private Dictionary<string, IBuff> _buffs = new();
-
-    public void Init(IEntity entity, Dictionary<string, IBuff> buffs)
+    public void Init(BuffService buffService)
     {
-        _entity = entity;
-        _buffs = buffs;
+        _buffService = buffService;
+    }
+    
+    private void Start()
+    {
+        ApplyTimed(BuffsEnum.Berserk);
     }
 
-    public void ApplyTimedBuff(IBuff buff, float duration)
+    public void ApplyTimed(BuffsEnum buffName)
     {
-        buff.Apply(_entity);
-        StartCoroutine(RemoveAfter(buff, duration));
+        if (_buffService == null)
+        {
+            Debug.LogError("BuffSystem: not initialized.");
+            return;
+        }
+        Debug.Log($"[BuffSystem] ApplyTimed requested: {buffName}");
+        StartCoroutine(Run(buffName));
     }
 
-    private IEnumerator RemoveAfter(IBuff buff, float duration)
+    private IEnumerator Run(BuffsEnum buffName)
     {
+        _buffService.Apply(buffName);
+        int duration = _buffService.GetBuffDuration(buffName);
+        Debug.Log($"[BuffSystem] Buff {buffName} applied. Duration: {duration}s");
+
         yield return new WaitForSeconds(duration);
-        buff.Remove(_entity);
+        _buffService.Remove(buffName);
     }
+
+
 }

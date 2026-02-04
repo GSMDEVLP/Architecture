@@ -1,28 +1,29 @@
-
-using System.Data;
-
 public class BerserkBuffImplementation : IBuff
 {
-    private readonly float _damageMultiplier;
-    private readonly float _armorReduction;
-    private readonly float _duration;
+    private readonly int _damageMultiplier;
+    private readonly int _armorReduction;
+    private readonly int _duration;
 
-    public BerserkBuffImplementation( float damageMultiplier, float armorReduction, float duration)
+    public int Duration => _duration;
+    public BerserkBuffImplementation(int damageMultiplier, int armorReduction, int duration)
     {
         _damageMultiplier = damageMultiplier;
         _armorReduction = armorReduction;
         _duration = duration;
-    } 
+    }
 
 
     public void Apply(IEntity target)
     {
-        throw new System.NotImplementedException();
+        target.ApplyStatsModifier(new Stats(_damageMultiplier, 0, 0));
+        target.ApplyResourcesModifier(new Resources(0, 0, 0, -_armorReduction));
     }
 
     public void Remove(IEntity target)
     {
-        throw new System.NotImplementedException();
+        target.RemoveStatsModifier(new Stats(_damageMultiplier, 0, 0));
+        target.RemoveResourcesModifier(new Resources(0, 0, 0, -_armorReduction));
     }
 }
 
+    
