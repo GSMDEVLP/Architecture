@@ -1,12 +1,14 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using Zenject;
 
 public class ParameterSystem : MonoBehaviour
 {
     private IEntity _entity;
 
     public IEntity Entity => _entity;
-    public void Init(IEntity entity)
+
+    [Inject]
+    public void Construct(IEntity entity)
     {
         _entity = entity;
     }

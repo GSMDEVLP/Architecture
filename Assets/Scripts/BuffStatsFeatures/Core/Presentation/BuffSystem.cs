@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class BuffSystem : MonoBehaviour
 {
     private BuffService _buffService;
 
-    public void Init(BuffService buffService)
+    [Inject]
+    public void Construct(BuffService buffService)
     {
         _buffService = buffService;
     }
@@ -36,6 +38,4 @@ public class BuffSystem : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _buffService.Remove(buffName);
     }
-
-
 }

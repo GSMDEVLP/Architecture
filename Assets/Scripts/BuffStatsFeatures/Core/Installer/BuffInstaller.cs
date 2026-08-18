@@ -1,18 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class BuffInstaller : MonoBehaviour, IInstaller
+public class BuffInstaller : MonoInstaller
 {
-    [SerializeField] private int _order; 
-    [SerializeField] private BuffSystem _buffSystem;
-    [SerializeField] private List<BuffConfig> _buffConfigs = new();
+    [SerializeField] private List<BuffConfig> _buffConfigs;
 
     private Dictionary<BuffsEnum, IBuff> _buffs = new();
+    
+    public override void InstallBindings()
+    {
+        CreateBuff();
+        Container.Bind<BuffService>().AsSingle();
+        // Container.Bind<BuffSystem>().AsSingle();
+        // Container.Bind<ParameterSystem>().AsSingle();
+        // Container.BindInterfacesAndSelfTo<BuffInstaller>().AsSingle();
+        // Container.BindInterfacesAndSelfTo<ParameterInstaller>().AsSingle();
+    }
 
-    public int Order => _order;
-
-    public void InstallBindings(GameServices gameServices)
+    private void CreateBuff()
     {
         foreach (var buffConfig in _buffConfigs)
         {
@@ -22,9 +28,6 @@ public class BuffInstaller : MonoBehaviour, IInstaller
             else
                 Debug.LogWarning($"[BuffInstaller] Duplicate buff key: {buffConfig.BuffName}");
         }
-        var entity = gameServices.Entity;
-        var buffService = new BuffService(entity, _buffs);
-        _buffSystem.Init(buffService);
-        Debug.Log($"[BuffInstaller] BuffSystem initialized. Buff count: {_buffs.Count}");
+        Container.BindInstance(_buffs);
     }
 }

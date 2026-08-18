@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerWeaponSystem : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class PlayerWeaponSystem : MonoBehaviour
         _target = new Target(100, 100);
     }
 
-    public void Init(WeaponSystem weaponSystem, IEventBus bus)
+    [Inject]
+    public void Construct(WeaponSystem weaponSystem, IEventBus bus)
     {
         _weaponSystem = weaponSystem;
         _bus = bus;

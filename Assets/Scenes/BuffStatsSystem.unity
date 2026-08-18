@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -96,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -284,11 +281,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229089750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a5c8cb9c3a3f94689786b89eeb3b34, type: 3}
+  m_Script: {fileID: 11500000, guid: a6134782bdcf6144ea870fc4bf3f0abe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _order: 1
-  _buffSystem: {fileID: 294899613}
+  m_EditorClassIdentifier: Assembly-CSharp::NewBuffInstaller
   _buffConfigs:
   - {fileID: 11400000, guid: 11b611870d0ccbd4d8994ea08af85205, type: 2}
   - {fileID: 11400000, guid: b019fc5d4d82d734090040635f7cf7a8, type: 2}
@@ -302,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1467339267}
-  - component: {fileID: 1467339266}
+  - component: {fileID: 1467339268}
   m_Layer: 0
   m_Name: Installers
   m_TagString: Untagged
@@ -310,21 +305,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1467339266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467339265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 837b6f50c2c1e3143ad2cc4cfb023cf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _installersMonoBehaviours:
-  - {fileID: 2002273342}
-  - {fileID: 1229089752}
 --- !u!4 &1467339267
 Transform:
   m_ObjectHideFlags: 0
@@ -342,6 +322,39 @@ Transform:
   - {fileID: 1229089751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1467339268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467339265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.SceneContext
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 2002273342}
+  - {fileID: 1229089752}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
 --- !u!1 &1569281623
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,11 +488,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2002273340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79c581d4ce95b1d4cbe6dd37e25bba58, type: 3}
+  m_Script: {fileID: 11500000, guid: 5488b1c95d870ec4da39f638a40f0ebb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _order: 0
-  _parameterSystem: {fileID: 300855220}
+  m_EditorClassIdentifier: Assembly-CSharp::NewParameterInstaller
   _entityParameters: {fileID: 11400000, guid: afccc4230490b8643802feae41b81b4d, type: 2}
 --- !u!1 &2014845973
 GameObject:
@@ -506,15 +517,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014845973}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 13
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -558,8 +568,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
+  m_ForceVisible: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &2014845975
 Transform:
   m_ObjectHideFlags: 0
